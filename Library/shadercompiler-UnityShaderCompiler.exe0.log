@@ -152,3 +152,63 @@ Cmd: compileSnippet
   api=15 type=4 insize=1143 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
 Cmd: preprocess
   insize=1021 outsize=169 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(31): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(46): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(53): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(58): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(68): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(82): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(84): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2587 outsize=9349 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2581 outsize=9913 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2582 outsize=9929 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2581 outsize=9929 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2588 outsize=9897 ok=1

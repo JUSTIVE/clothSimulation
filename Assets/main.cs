@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class main : MonoBehaviour {
     //publics 
+    public MeshTopology mt;
     public bool showFrame=false;
     public Text text;
     public float[] size=new float[2];
@@ -62,12 +63,12 @@ public class main : MonoBehaviour {
             positions[i]= new Vector4(0, 0, 0, 0);
             velocities[i]= new Vector4(0, 0, 0, 0);
         }
-        for (int i = 0; i < vertn; i++)
+        for (int i = 0; i < vertm; i++)
         {
-            for (int j = 0; j < vertm; j++)
-            {
-                positions[i * vertm + j].x = dy * j - 0.5f;
-                positions[i * vertm + j].y = dx * i - 0.25f;
+                for (int j = 0; j < vertn; j++)
+                {
+                positions[i * vertm + j].x = dx* j -0.5f;
+                positions[i * vertm + j].y = dy * i;
                 positions[i * vertm + j].z = 0.0f;
                 positions[i * vertm + j].w = 1.0f;
             }
@@ -87,9 +88,9 @@ public class main : MonoBehaviour {
         computeProgram.SetBuffer(computeShaderHandle, "Position", computeBufferPosition);
         computeProgram.SetBuffer(computeShaderHandle, "Velocity", computeBufferVelocity);
         //compute shader set variable
-        computeProgram.SetFloat("RestLengthHoritz",dx);
-        computeProgram.SetFloat("RestLengthVert", dy);
-        computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(dx*dx+dy*dy));
+        computeProgram.SetFloat("RestLengthHoritz",1.0f/(vertn-1));
+        computeProgram.SetFloat("RestLengthVert", 1.0f / (vertm-1));
+        computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(Mathf.Pow(dx,2)+ Mathf.Pow(dy, 2)));
         computeProgram.SetFloat("vertn",vertn);
         computeProgram.SetFloat("vertm", vertm);
     }
@@ -105,12 +106,12 @@ public class main : MonoBehaviour {
     private void OnPostRender()
     {
         mat.SetPass(0);
-        Graphics.DrawProcedural(MeshTopology.Triangles, vertextSize/3,1);
+        Graphics.DrawProcedural(mt, vertextSize,1);
     }
 
     // Update is called once per frame
     void Update () {
-        for(int i = 0; i < 1000;i++) { 
+        for(int i = 0; i < 500;i++) {
             computeProgram.Dispatch(computeShaderHandle,vertn/8, vertm/8, 1);
         }
 
