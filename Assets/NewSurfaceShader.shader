@@ -1,43 +1,51 @@
 ﻿Shader "Custom/NewSurfaceShader" {
-	Properties {
+	SubShader{
+		Pass{
+			CGPROGRAM
+			#pragma exclude_renderers d3d11_9x d3d11 xbox360
+			#pragma vertex vert
+			//#pragma geometry geom
+			#pragma fragment frag
+			#pragma target 3.0
+			#include "UnityCG.cginc"
+
+			struct g2f {
+				float4 pos : SV_POSITION;
+				float3 col : COLOR0;
+			};
+			struct v2f {
+				float4 pos : SV_POSITION;
+			};
+
+			struct v2g{
+				float4 pos : SV_POSITION;
+			};
+			StructuredBuffer<float4>Position;
+			StructuredBuffer<float4>Velocity;
 		
-		_MainTex ("Texture", 2D) = "white" {}
-		
+
+			v2f vert(uint id : SV_VertexID) {
+				v2f o;
+				float4 worldPos = Position[id];
+				o.pos = mul(UNITY_MATRIX_MVP, worldPos);
+				return o;
+			}
+
+			uint i;
+			/*[maxvertexcount(3)]
+			void geom(triangle v2g input[3], inout TriangleStream<g2f> triStream)
+			{
+				for (uint i = 0; i<3; i +=1)
+				{
+					triStream.RestartStrip();
+				}
+			}*/
+
+			float4 frag(v2f i) : COLOR{
+				return float4(1.0f,0.0f,0.0f,1.0f);
+			}
+			ENDCG
+		}
 	}
-	SubShader {
-		Tags { "RenderType"="Opaque" }
-		LOD 200
-		
-		CGPROGRAM
-		
-		#pragma surface surf
-		#pragma geometry geom
-		#pragma fragment frag
-		#pragma target 3.0
-
-
-		struct Input {
-			float2 uv_MainTex;
-		};
-
-		struct v2f{
-
-		}
-
-		void geom(triangle v2f input[3],inout TriangleStream<v2f> OutputStream){
-
-		}
-
-		void surf (Input IN, inout SurfaceOutputStandard o) {
-			// Albedo comes from a texture tinted by color
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = c.rgb;
-			// Metallic and smoothness come from slider variables
-			o.Metallic = _Metallic;
-			o.Smoothness = _Glossiness;
-			o.Alpha = c.a;
-		}
-		ENDCG
-	}
-	FallBack "Diffuse"
+		Fallback "Diffuse"
 }

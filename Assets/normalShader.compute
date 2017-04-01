@@ -3,32 +3,27 @@
 
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
-struct Position{
-	float3 pos;
-};
-struct Velocity {
-	float3 vel;
-};
-RWStructuredBuffer<Position> Pos;
-RWStructuredBuffer<Velocity> Vel;
+
+RWStructuredBuffer<float4> Pos;
+RWStructuredBuffer<float4> Vel;
 
 float RestLengthHoriz;
 float RestLengthVert;
 float RestLengthDiag;
 
-[numthreads(32,32,1)]
+[numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-	float3 
+	float3 Gravity = float3(0, -9.81, 0);
 	float ParticleMass = 0.1f;
 	float SpringK=2000.0f;
 	float DeltaT = 0.000005f;
-	float DampingConst = 0.1f
-	float3 Gravity = float3(0.0f, -9.81f, 0.0);
+	float DampingConst = 0.1f;
+	
 
-	float3 p = float3(Pos[id.x]);
-	float3 v = float3(Vel[id.x]);
+	float3 p = (Pos[id.x].xyz);
+	float3 v = (Vel[id.x].xyz);
 
 	float3 force = Gravity * ParticleMass;
-	if()
+	
 }
