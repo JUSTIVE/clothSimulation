@@ -105,7 +105,7 @@ public class main : MonoBehaviour {
     private void OnPostRender()
     {
         mat.SetPass(0);
-        Graphics.DrawProcedural(MeshTopology.Points, vertextSize,1);
+        Graphics.DrawProcedural(MeshTopology.Triangles, vertextSize/3,1);
     }
 
     // Update is called once per frame
