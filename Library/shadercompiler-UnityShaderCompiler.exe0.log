@@ -90,3 +90,29 @@ Cmd: compileSnippet
   api=15 type=0 insize=1464 outsize=2078 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
 Cmd: compileSnippet
   api=15 type=1 insize=1464 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(28): undeclared identifier 'nParticles'
+  api=15 insize=2549 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(28): undeclared identifier 'nParticles'
+  api=15 insize=2549 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(29): undeclared identifier 'r'
+  api=15 insize=2411 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(29): undeclared identifier 'r'
+  api=15 insize=2411 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(29): undeclared identifier 'r'
+  api=15 insize=2397 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(29): undeclared identifier 'r'
+  api=15 insize=2397 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(74): unrecognized identifier 'a'
+  error: 2 plat 15 at computeShader.compute(74): unrecognized identifier 'vec3'
+  api=15 insize=2409 outsize=0 ok=0
+Cmd: compileCompute
+  error: 2 plat 15 at computeShader.compute(74): unrecognized identifier 'a'
+  error: 2 plat 15 at computeShader.compute(74): unrecognized identifier 'vec3'
+  api=15 insize=2409 outsize=0 ok=0
