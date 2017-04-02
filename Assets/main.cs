@@ -106,7 +106,16 @@ public class main : MonoBehaviour {
     private void OnPostRender()
     {
         mat.SetPass(0);
-        Graphics.DrawProcedural(mt, vertextSize,1);
+        switch (mt)
+        {
+            case MeshTopology.Points:
+                Graphics.DrawProcedural(mt, vertextSize, 1);
+                break;
+            case MeshTopology.Triangles:
+                Graphics.DrawProcedural(mt, vertextSize/3, 1);
+                break;
+        }
+        
     }
 
     // Update is called once per frame
