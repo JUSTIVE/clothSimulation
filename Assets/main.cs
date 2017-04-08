@@ -7,18 +7,17 @@ public class main : MonoBehaviour {
     public MeshTopology mt;
     public bool showFrame = false;
     public Text text;
-    public float[] size = new float[2];
     public ComputeShader computeProgram;
     public ComputeShader normalComputeShader;
     public Shader renderProgram;
     public int vertn, vertm;
     public Camera cam;
+    public Vector2 ClothSize;
     //privates
     private ComputeBuffer computeBufferPosition;
     private ComputeBuffer computeBufferVelocity;
     private int computeShaderHandle;
     private int normalComputeShaderHandle;
-    private float speed = 200.0f;
     private Material mat;
 
     private float dx, dy;
@@ -51,7 +50,7 @@ public class main : MonoBehaviour {
     void InitCamera()
     {
         
-        cam.transform.position = new Vector3(3, 2, 5);
+        cam.transform.position = new Vector3(1, 2, 3);
         cam.transform.LookAt(new Vector3(0, 0, 0), new Vector3(0, 1, 0));
         camDist = Vector3.Distance(cam.transform.position, Vector3.zero);
         Vector3 angles = transform.eulerAngles;
@@ -82,24 +81,18 @@ public class main : MonoBehaviour {
         GameObject gb = new GameObject();
         //translate matrix setup
         Matrix4x4 mp = new Matrix4x4();
-        mp.m33 = mp.m22 = mp.m00 = mp.m11 = 1.0f;
-        mp.m01 = 0.5f;
-        Vector4 tempVec = new Vector4();
+        mp.SetTRS(new Vector3(-0.5f, 1.0f, 0.0f), Quaternion.Euler(new Vector3(-80.0f, 0.0f, 0.0f)), new Vector3(1.0f,1.0f,1.0f));
+        mp.m13 = 0.0f;
+        
         for (int i = 0; i < vertm; i++)
         {
             for (int j = 0; j < vertn; j++)
             {
-                tempVec.x = dx * j - 1.0f;
-                tempVec.y = dy * i;
-                tempVec.z = 0.0f;
-                tempVec.w = 1.0f;
-
-                tempVec = mp * tempVec;
-
-                positions[i * vertm + j].x = tempVec.x;
-                positions[i * vertm + j].y = tempVec.y;
-                positions[i * vertm + j].z = tempVec.z;
-                positions[i * vertm + j].w = tempVec.w;
+                positions[i * vertm + j].x = dx * j;
+                positions[i * vertm + j].y = dy * i;
+                positions[i * vertm + j].z = 0.0f;
+                positions[i * vertm + j].w = 1.0f;
+                positions[i * vertm + j] = mp * positions[i * vertm + j];
             }
         }
     }
@@ -117,7 +110,7 @@ public class main : MonoBehaviour {
         computeProgram.SetBuffer(computeShaderHandle, "Position", computeBufferPosition);
         computeProgram.SetBuffer(computeShaderHandle, "Velocity", computeBufferVelocity);
         //compute shader set variable
-        computeProgram.SetFloat("RestLengthHoritz", dx);
+        computeProgram.SetFloat("RestLengthHoriz", dx);
         computeProgram.SetFloat("RestLengthVert", dy);
         computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(Mathf.Pow(dx, 2) + Mathf.Pow(dy, 2)));
         computeProgram.SetFloat("vertn", vertn);
@@ -144,7 +137,6 @@ public class main : MonoBehaviour {
                 Graphics.DrawProcedural(mt, vertextSize / 3, 1);
                 break;
         }
-
     }
 
     // Update is called once per frame
