@@ -15,14 +15,14 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 	float3 nParticles = float3(32, 32, 1);
 	float vertexes = vertn*vertm;
 
-	float3 Gravity = float3(0, -9.81, 0);
+	float3 Gravity = float3(0, -10.0f, 0);
 	float ParticleMass = 0.1f;
-	float ParticleInvMass = 10.0f;
+	float ParticleInvMass = 1.0/0.1f;
 	float SpringK = 2000.0f;
 	float DeltaT = 0.000005f;
 	float DampingConst = 0.1f;
 
-	uint idx = id.y * nParticles.x + id.x;
+	uint idx = id.y * vertn + id.x;
 	float3 p = float3(Position[idx].xyz);
 	float3 v = float3(Velocity[idx].xyz);
 	float3 r;

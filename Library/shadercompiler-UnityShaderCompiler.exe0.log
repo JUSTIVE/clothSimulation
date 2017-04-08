@@ -1,2 +1,58 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: getPlatforms
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2640 outsize=9929 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2641 outsize=9913 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
+  api=15 insize=2644 outsize=9913 ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=608 outsize=3357 kw=SHADOWS_DEPTH pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=608 outsize=0 kw=SHADOWS_DEPTH pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=986 outsize=14848 kw=DIRECTIONAL LIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=986 outsize=0 kw=DIRECTIONAL LIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=17508 outsize=9647 kw=SHADOWS_SPLIT_SPHERES pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=17508 outsize=0 kw=SHADOWS_SPLIT_SPHERES pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=986 outsize=15332 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=986 outsize=0 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=912 outsize=7141 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=912 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1

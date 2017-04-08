@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class main : MonoBehaviour {
     //publics 
     public MeshTopology mt;
-    public bool showFrame=false;
+    public bool showFrame = false;
     public Text text;
-    public float[] size=new float[2];
+    public float[] size = new float[2];
     public ComputeShader computeProgram;
     public ComputeShader normalComputeShader;
     public Shader renderProgram;
@@ -25,31 +25,46 @@ public class main : MonoBehaviour {
     private Vector4[] positions;
     private Vector4[] velocities;
     //values for frame counting
-    private float fpsSum=0.0f;
+    private float fpsSum = 0.0f;
     private int frameNum = 0;
-    private int frameStep=0;
+    private int frameStep = 0;
+    //camera
+    private Vector3 Speed=new Vector3(120.0f,120.0f);
+    private float yMinLimit = -20f;
+    private float yMaxLimit = 80f;
+    private Vector3 mouseDownCoordinate;
+    private float camDist;
+    private Vector3 mouseCurrentPosition;
+    private bool mouseDownFlag = false;
+    float x = 0.0f;
+    float y = 0.0f;
     //
     private int vertextSize;
     // Use this for initialization
-    void Start () {
+    void Start() {
         InitCamera();
         InitVertex();
         InitText();
         InitCompute();
         InitMaterial();
-	}
+    }
     void InitCamera()
     {
+        
         cam.transform.position = new Vector3(3, 2, 5);
-        cam.transform.LookAt(new Vector3(0,0,0), new Vector3(0, 1, 0));
+        cam.transform.LookAt(new Vector3(0, 0, 0), new Vector3(0, 1, 0));
+        camDist = Vector3.Distance(cam.transform.position, Vector3.zero);
+        Vector3 angles = transform.eulerAngles;
+        x = angles.x;
+        y = angles.y;
     }
     void InitText()
     {
         if (showFrame) {
-            text.text = vertextSize+"\n";
+            text.text = vertextSize + "\n";
         }
     }
-    
+
     void InitVertex()
     {
         vertextSize = vertn * vertm;
@@ -60,17 +75,31 @@ public class main : MonoBehaviour {
         Vector4 p = new Vector4(0, 0, 0, 1);
         for (int i = 0; i < vertextSize; i++)
         {
-            positions[i]= new Vector4(0, 0, 0, 0);
-            velocities[i]= new Vector4(0, 0, 0, 0);
+            positions[i] = new Vector4(0, 0, 0, 0);
+            velocities[i] = new Vector4(0, 0, 0, 0);
         }
+
+        GameObject gb = new GameObject();
+        //translate matrix setup
+        Matrix4x4 mp = new Matrix4x4();
+        mp.m33 = mp.m22 = mp.m00 = mp.m11 = 1.0f;
+        mp.m01 = 0.5f;
+        Vector4 tempVec = new Vector4();
         for (int i = 0; i < vertm; i++)
         {
-                for (int j = 0; j < vertn; j++)
-                {
-                positions[i * vertm + j].x = dx* j -0.5f;
-                positions[i * vertm + j].y = dy * i;
-                positions[i * vertm + j].z = 0.0f;
-                positions[i * vertm + j].w = 1.0f;
+            for (int j = 0; j < vertn; j++)
+            {
+                tempVec.x = dx * j - 1.0f;
+                tempVec.y = dy * i;
+                tempVec.z = 0.0f;
+                tempVec.w = 1.0f;
+
+                tempVec = mp * tempVec;
+
+                positions[i * vertm + j].x = tempVec.x;
+                positions[i * vertm + j].y = tempVec.y;
+                positions[i * vertm + j].z = tempVec.z;
+                positions[i * vertm + j].w = tempVec.w;
             }
         }
     }
@@ -88,10 +117,10 @@ public class main : MonoBehaviour {
         computeProgram.SetBuffer(computeShaderHandle, "Position", computeBufferPosition);
         computeProgram.SetBuffer(computeShaderHandle, "Velocity", computeBufferVelocity);
         //compute shader set variable
-        computeProgram.SetFloat("RestLengthHoritz",1.0f/(vertn-1));
-        computeProgram.SetFloat("RestLengthVert", 1.0f / (vertm-1));
-        computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(Mathf.Pow(dx,2)+ Mathf.Pow(dy, 2)));
-        computeProgram.SetFloat("vertn",vertn);
+        computeProgram.SetFloat("RestLengthHoritz", dx);
+        computeProgram.SetFloat("RestLengthVert", dy);
+        computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(Mathf.Pow(dx, 2) + Mathf.Pow(dy, 2)));
+        computeProgram.SetFloat("vertn", vertn);
         computeProgram.SetFloat("vertm", vertm);
     }
     void InitMaterial()
@@ -99,7 +128,7 @@ public class main : MonoBehaviour {
         //create material
         mat = new Material(renderProgram);
         //material set buffer
-        mat.SetBuffer("Position",computeBufferPosition);
+        mat.SetBuffer("Position", computeBufferPosition);
         mat.SetBuffer("Velocity", computeBufferVelocity);
     }
 
@@ -112,33 +141,74 @@ public class main : MonoBehaviour {
                 Graphics.DrawProcedural(mt, vertextSize, 1);
                 break;
             case MeshTopology.Triangles:
-                Graphics.DrawProcedural(mt, vertextSize/3, 1);
+                Graphics.DrawProcedural(mt, vertextSize / 3, 1);
                 break;
         }
-        
+
     }
 
     // Update is called once per frame
-    void Update () {
-        for(int i = 0; i < 500;i++) {
-            computeProgram.Dispatch(computeShaderHandle,vertn/8, vertm/8, 1);
+    void Update() {
+        for (int i = 0; i < 500; i++) {
+            computeProgram.Dispatch(computeShaderHandle, vertn / 8, vertm / 8, 1);
         }
 
         frameNum++;
         fpsSum += 1.0f / (Time.deltaTime);
         if (frameNum > 200)
         {
-            if (frameStep < 10) { 
-                if(showFrame)
-                    text.text += "frame = " + fpsSum / 200.0f+"\n";
+            if (frameStep < 10) {
+                if (showFrame)
+                    text.text += "frame = " + fpsSum / 200.0f + "\n";
                 frameNum = 0;
                 fpsSum = 0;
                 frameStep++;
             }
         }
+        UpdateCamera();
         computeBufferPosition.GetData(positions);
-        Debug.Log(positions[0].y);
-
+        //Debug.Log(positions[0].y);
 
     }
+    
+    void UpdateCamera()
+    {
+        if (Input.GetMouseButton(0)==true)
+        {
+            if (!mouseDownFlag) {
+                mouseDownFlag = true;
+                mouseDownCoordinate = Input.mousePosition;
+                Debug.Log("down");
+            }
+            else {
+                x += Input.GetAxis("Mouse X") * Speed.x * camDist * 0.02f;
+                y -= Input.GetAxis("Mouse Y") * Speed.y * 0.02f;
+                y = ClampAngle(y, yMinLimit, yMaxLimit);
+                Quaternion rotation = Quaternion.Euler(y, x, 0);
+
+                Vector3 negDist = new Vector3(0.0f, 0.0f, -camDist);
+                Vector3 position = rotation *negDist;
+
+                transform.rotation = rotation;
+                transform.position = position;
+            }
+        }
+        else
+        {
+            mouseDownFlag = false;
+            Debug.Log("up");
+        }
+        cam.transform.LookAt(Vector3.zero);
+            
+    }
+    public static float ClampAngle(float angle, float min, float max)
+    {
+        if (angle < -360F)
+            angle += 360F;
+        if (angle > 360F)
+            angle -= 360F;
+        return Mathf.Clamp(angle, min, max);
+    }
 }
+
+
