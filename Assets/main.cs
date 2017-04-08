@@ -23,6 +23,9 @@ public class main : MonoBehaviour {
     private float dx, dy;
     private Vector4[] positions;
     private Vector4[] velocities;
+    //values for triangle
+
+
     //values for frame counting
     private float fpsSum = 0.0f;
     private int frameNum = 0;

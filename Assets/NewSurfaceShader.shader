@@ -24,15 +24,15 @@
 			StructuredBuffer<float4>Velocity;
 		
 
-			v2f vert(uint id : SV_VertexID) {
+			v2g vert(uint id : SV_VertexID) {
 				v2f o;
 				float4 worldPos = Position[id];
 				o.pos = mul(UNITY_MATRIX_MVP, worldPos);
 				return o;
 			}
 
-			uint i;
-			/*[maxvertexcount(3)]
+			/*uint i;
+			[maxvertexcount(3)]
 			void geom(triangle v2g input[3], inout TriangleStream<g2f> triStream)
 			{
 				for (uint i = 0; i<3; i +=1)
@@ -41,7 +41,7 @@
 				}
 			}*/
 
-			float4 frag(v2f i) : COLOR{
+			float4 frag(g2f i) : COLOR{
 				return float4(1.0f,0.0f,0.0f,1.0f);
 			}
 			ENDCG
