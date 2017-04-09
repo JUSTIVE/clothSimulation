@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.IO;
 
 public class main : MonoBehaviour {
+
     //publics 
     public MeshTopology mt;
-    public bool showFrame = false;
+    public bool showFrame = true;
     public Text text;
     public ComputeShader computeProgram;
     public ComputeShader normalComputeShader;
@@ -23,9 +25,9 @@ public class main : MonoBehaviour {
     private float dx, dy;
     private Vector4[] positions;
     private Vector4[] velocities;
-    //values for triangle
-
-
+    //values for write Logfile
+    private StreamWriter sw;
+    private int logFrame = 0;
     //values for frame counting
     private float fpsSum = 0.0f;
     private int frameNum = 0;
@@ -44,6 +46,7 @@ public class main : MonoBehaviour {
     private int vertextSize;
     // Use this for initialization
     void Start() {
+        initLog();
         InitCamera();
         InitVertex();
         InitText();
@@ -67,6 +70,10 @@ public class main : MonoBehaviour {
         }
     }
 
+    void initLog()
+    {
+        sw = new StreamWriter("Log.txt");
+    } 
     void InitVertex()
     {
         vertextSize = vertn * vertm;
@@ -144,6 +151,11 @@ public class main : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        computeBufferPosition.GetData(positions);
+        if (logFrame < 200) { 
+            sw.WriteLine(positions[0].x + ","+positions[0].y+","+positions[0].z);
+            logFrame++;
+        }
         for (int i = 0; i < 500; i++) {
             computeProgram.Dispatch(computeShaderHandle, vertn / 8, vertm / 8, 1);
         }
@@ -161,7 +173,7 @@ public class main : MonoBehaviour {
             }
         }
         UpdateCamera();
-        computeBufferPosition.GetData(positions);
+        
         //Debug.Log(positions[0].y);
 
     }
