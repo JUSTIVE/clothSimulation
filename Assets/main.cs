@@ -109,6 +109,8 @@ public class main : MonoBehaviour {
             computeProgram.SetBuffer(computeShaderHandleFreeDrop, "Velocity", computeBufferVelocity);
         }
         //compute shader set variable
+        computeProgram.SetVector("sphere1", new Vector4(0,-1.1f,-0.5f,1.0f));
+        computeProgram.SetVector("sphere2", new Vector4(0,-0.329f,-0.5f,1.0f));
         computeProgram.SetFloat("RestLengthHoriz", dx);
         computeProgram.SetFloat("RestLengthVert", dy);
         computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(Mathf.Pow(dx, 2) + Mathf.Pow(dy, 2)));

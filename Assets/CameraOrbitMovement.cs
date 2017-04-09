@@ -17,7 +17,7 @@ public class CameraOrbitMovement : MonoBehaviour {
 	}
     void InitCamera()
     {
-        cam.transform.position = new Vector3(1, 2, 3);
+        cam.transform.position = new Vector3(1, 2, 1);
         cam.transform.LookAt(new Vector3(0, 0, 0), new Vector3(0, 1, 0));
         camDist = Vector3.Distance(cam.transform.position, Vector3.zero);
         Vector3 angles = transform.eulerAngles;
