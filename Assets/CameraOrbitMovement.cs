@@ -44,9 +44,7 @@ public class CameraOrbitMovement : MonoBehaviour {
             transform.rotation = rotation;
             transform.position = position;
         }
-        
         cam.transform.LookAt(Vector3.zero);
-
     }
     public static float ClampAngle(float angle, float min, float max)
     {

@@ -46,6 +46,7 @@
 			}*/
 
 			float4 frag(v2f i) : COLOR{
+				return float4(0,0,0,0);
 				return float4(i.col.xyz,1.0f);
 			}
 			ENDCG
