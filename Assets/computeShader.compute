@@ -12,7 +12,7 @@ float RestLengthDiag;
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-	uint3 nParticles = float3(vertn, vertm, 1);
+	float3 nParticles = float3(vertn, vertm, 1);
 	float vertexes = vertn*vertm;
 
 	float3 Gravity = float3(0, -10.0f, 0);

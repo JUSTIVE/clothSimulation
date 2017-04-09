@@ -1,11 +1,11 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: getPlatforms
 Cmd: preprocess
-  insize=1256 outsize=169 ok=1
+  insize=1266 outsize=169 ok=1
 Cmd: compileSnippet
-  api=15 type=0 insize=1384 outsize=1769 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+  api=15 type=0 insize=1394 outsize=1769 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
 Cmd: compileSnippet
-  api=15 type=1 insize=1384 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+  api=15 type=1 insize=1394 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
 Cmd: compileCompute
   error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
   error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
@@ -18,63 +18,27 @@ Cmd: compileCompute
   error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
   error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
   api=15 insize=2647 outsize=10229 ok=1
-Cmd: compileCompute
-  api=15 insize=670 outsize=293 ok=1
+Cmd: preprocess
+  insize=1270 outsize=169 ok=1
 Cmd: compileSnippet
-  api=15 type=0 insize=1458 outsize=1723 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+  api=15 type=0 insize=1398 outsize=1769 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
 Cmd: compileSnippet
-  api=15 type=1 insize=1458 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
-Cmd: compileCompute
-  error: 2 plat 15 at computeShader.compute(15): unsigned can not be used with type
-  api=15 insize=2656 outsize=33 ok=0
-Cmd: compileCompute
-  error: 2 plat 15 at computeShader.compute(15): unsigned can not be used with type
-  api=15 insize=2656 outsize=33 ok=0
-Cmd: compileCompute
-  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
-  api=15 insize=2647 outsize=10229 ok=1
-Cmd: compileCompute
-  error: 2 plat 15 at computeShader.compute(32): syntax error: unexpected integer constant
-  error: 2 plat 15 at computeShader.compute(32): syntax error: unexpected token ')'
-  error: 2 plat 15 at computeShader.compute(37): syntax error: unexpected token 'if'
-  api=15 insize=2657 outsize=33 ok=0
-Cmd: compileCompute
-  error: 2 plat 15 at computeShader.compute(32): syntax error: unexpected integer constant
-  error: 2 plat 15 at computeShader.compute(32): syntax error: unexpected token ')'
-  error: 2 plat 15 at computeShader.compute(37): syntax error: unexpected token 'if'
-  api=15 insize=2657 outsize=33 ok=0
-Cmd: compileCompute
-  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
-  api=15 insize=2661 outsize=10229 ok=1
-Cmd: compileCompute
-  error: 1 plat 15 at computeShader.compute(32): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(47): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(54): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(59): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(69): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(83): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(85): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(86): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
-  error: 1 plat 15 at computeShader.compute(88): signed/unsigned mismatch, unsigned assumed
-  api=15 insize=2647 outsize=10229 ok=1
-Cmd: compileCompute
-  api=15 insize=2646 outsize=10441 ok=1
+  api=15 type=1 insize=1398 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: preprocess
+  insize=1302 outsize=169 ok=1
+Cmd: compileSnippet
+  error: 2 plat 15 at (49): incorrect number of arguments to numeric-type constructor\nCompiling Vertex program
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP
+  api=15 type=0 insize=1430 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=0
+Cmd: preprocess
+  insize=1317 outsize=169 ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=1445 outsize=1289 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=1445 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: preprocess
+  insize=1319 outsize=169 ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=1447 outsize=1289 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=1447 outsize=0 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING SHADER_API_DESKTOP ok=1

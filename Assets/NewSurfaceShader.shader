@@ -9,18 +9,18 @@
 			#pragma target 3.0
 			#include "UnityCG.cginc"
 
-			struct g2f {
+			/*struct g2f {
 				float4 pos : SV_POSITION;
 				float3 col : COLOR0;
-			};
+			};*/
 			struct v2f {
 				float4 pos : SV_POSITION;
 				float3 col : COLOR0;
 			};
 
-			struct v2g{
-				float4 pos : SV_POSITION;
-			};
+			//struct v2g{
+			//	float4 pos : SV_POSITION;
+			//};
 			StructuredBuffer<float4>Position;
 			StructuredBuffer<float4>Velocity;
 		
@@ -29,9 +29,9 @@
 				v2f o;
 				float4 worldPos = Position[id];
 				o.pos = mul(UNITY_MATRIX_MVP, worldPos);
-				o.col.x = (sin((0.3*float(o.pos.x * 30))) * 127 + 128) / 255.0f;
-				o.col.y = (sin((0.3*float(o.pos.x * 30)) + 2) * 127 + 128) / 255.0f;
-				o.col.z = (sin((0.3*float(o.pos.x * 30)) + 4) * 127 + 128) / 255.0f;
+				//o.col.x = (sin((0.3*float(o.pos.x * 30))) * 127 + 128) / 255.0f;
+				//o.col.y = (sin((0.3*float(o.pos.x * 30)) + 2) * 127 + 128) / 255.0f;
+				//o.col.z = (sin((0.3*float(o.pos.x * 30)) + 4) * 127 + 128) / 255.0f;
 				return o;
 			}
 
@@ -46,7 +46,8 @@
 			}*/
 
 			float4 frag(v2f i) : COLOR{
-				return float4(i.col,1.0f);
+				return float4(1.0f,1.0f,1.0f,1.0f);
+				//return float4(i.col.xyz,1.0f);
 			}
 			ENDCG
 		}

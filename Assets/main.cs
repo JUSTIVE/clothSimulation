@@ -146,16 +146,19 @@ public class main : MonoBehaviour {
             case MeshTopology.Triangles:
                 Graphics.DrawProcedural(mt, vertextSize / 3, 1);
                 break;
+            default:
+                Debug.Log("unhandled Mesh Topology\n");
+                break;
         }
     }
 
     // Update is called once per frame
     void Update() {
-        computeBufferPosition.GetData(positions);
-        if (logFrame < 200) { 
-            sw.WriteLine(positions[0].x + ","+positions[0].y+","+positions[0].z);
-            logFrame++;
-        }
+        //computeBufferPosition.GetData(positions);
+        //if (logFrame < 200) { 
+        //    sw.WriteLine(positions[0].x + ","+positions[0].y+","+positions[0].z);
+        //    logFrame++;
+        //}
         for (int i = 0; i < 500; i++) {
             computeProgram.Dispatch(computeShaderHandle, vertn / 8, vertm / 8, 1);
         }
@@ -185,7 +188,7 @@ public class main : MonoBehaviour {
             if (!mouseDownFlag) {
                 mouseDownFlag = true;
                 mouseDownCoordinate = Input.mousePosition;
-                Debug.Log("down");
+                //Debug.Log("down");
             }
             else {
                 x += Input.GetAxis("Mouse X") * Speed.x * camDist * 0.02f;
@@ -203,7 +206,7 @@ public class main : MonoBehaviour {
         else
         {
             mouseDownFlag = false;
-            Debug.Log("up");
+            //Debug.Log("up");
         }
         cam.transform.LookAt(Vector3.zero);
             
