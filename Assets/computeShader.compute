@@ -1,5 +1,6 @@
 ﻿// Each #kernel tells which function to compile; you can have many kernels
-#pragma kernel CSMain
+#pragma kernel HANG
+#pragma kernel FREEDROP
 
 RWStructuredBuffer<float4>Position;
 RWStructuredBuffer<float4>Velocity;
@@ -10,7 +11,7 @@ float RestLengthVert;
 float RestLengthDiag;
 
 [numthreads(8,8,1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
+void HANG (uint3 id : SV_DispatchThreadID)
 {
 	float3 nParticles = float3(vertn, vertm, 1);
 	float vertexes = vertn*vertm;
@@ -89,4 +90,80 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 		Position[idx] = float4(p, 1.0);
 		Velocity[idx] = float4(0, 0, 0, 0);
 	}
+}
+
+[numthreads(8, 8, 1)]
+void FREEDROP(uint3 id : SV_DispatchThreadID) {
+	float3 nParticles = float3(vertn, vertm, 1);
+	float vertexes = vertn*vertm;
+
+	float3 Gravity = float3(0, -10.0f, 0);
+	float ParticleMass = 0.1f;
+	float ParticleInvMass = 10.0f;
+	float SpringK = 2000.0f;
+	float DeltaT = 0.000005f;
+	float DampingConst = 0.1f;
+
+	uint idx = id.y * vertn + id.x;
+	float3 p = float3(Position[idx].xyz);
+	float3 v = float3(Velocity[idx].xyz);
+	float3 r;
+
+	float3 force = Gravity * ParticleMass;
+
+	if (id.y < nParticles.y - 1) {
+		r = Position[idx + nParticles.x].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthVert);
+	}
+	// Below
+	if (id.y > 0) {
+		r = Position[idx - nParticles.x].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthVert);
+	}
+	// Left
+	if (id.x > 0) {
+		r = Position[idx - 1].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthHoriz);
+	}
+	// Right
+	if (id.x < nParticles.x - 1) {
+		r = Position[idx + 1].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthHoriz);
+	}
+
+	// Diagonals
+	// Upper-left
+	if (id.x > 0 && id.y < nParticles.y - 1) {
+		r = Position[idx + nParticles.x - 1].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthDiag);
+	}
+	// Upper-right
+	if (id.x < nParticles.x - 1 && id.y < nParticles.y - 1) {
+		r = Position[idx + nParticles.x + 1].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthDiag);
+	}
+	// lower -left
+	if (id.x > 0 && id.y > 0) {
+		r = Position[idx - nParticles.x - 1].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthDiag);
+	}
+	// lower-right
+	if (id.x < nParticles.x - 1 && id.y > 0) {
+		r = Position[idx - nParticles.x + 1].xyz - p;
+		force += normalize(r) * SpringK * (length(r) - RestLengthDiag);
+	}
+
+	force += -DampingConst * v;
+
+	// Apply simple Euler integrator
+	float3 a = force * ParticleInvMass;
+	Position[idx] = float4(
+		p + v * DeltaT + 0.5 * a * DeltaT * DeltaT, 1.0);
+	Velocity[idx] = float4(v + a * DeltaT, 0.0);
+
+	if (Position[idx].y < -1) {
+		Position[idx].y = -1;
+		Velocity[idx].y = 0;
+	}
+	
 }

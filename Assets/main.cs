@@ -6,7 +6,9 @@ using System.IO;
 public class main : MonoBehaviour {
 
     //publics 
-    public MeshTopology mt;
+    public MeshTopology meshTopology;
+    public enum Mode{Hang,FreeDrop};
+    public Mode mode;
     public bool showFrame = true;
     public Text text;
     public ComputeShader computeProgram;
@@ -17,7 +19,8 @@ public class main : MonoBehaviour {
     //privates
     private ComputeBuffer computeBufferPosition;
     private ComputeBuffer computeBufferVelocity;
-    private int computeShaderHandle;
+    private int computeShaderHandleHang;
+    private int computeShaderHandleFreeDrop;
     private int normalComputeShaderHandle;
     private Material mat;
 
@@ -25,23 +28,12 @@ public class main : MonoBehaviour {
     private Vector4[] positions;
     private Vector4[] velocities;
     //values for write Logfile
-    private StreamWriter sw;
+    private StreamWriter streamWriter;
     private int logFrame = 0;
     //values for frame counting
     private float fpsSum = 0.0f;
     private int frameNum = 0;
     private int frameStep = 0;
-    //camera
-    private Vector3 Speed=new Vector3(120.0f,120.0f);
-    private float yMinLimit = -20f;
-    private float yMaxLimit = 80f;
-    private Vector3 mouseDownCoordinate;
-    private float camDist;
-    private Vector3 mouseCurrentPosition;
-    private bool mouseDownFlag = false;
-    float x = 0.0f;
-    float y = 0.0f;
-    //
     private int vertextSize;
     // Use this for initialization
     void Start() {
@@ -61,28 +53,28 @@ public class main : MonoBehaviour {
 
     void initLog()
     {
-        sw = new StreamWriter("Log.txt");
+        streamWriter = new StreamWriter("Log.txt");
     } 
     void InitVertex()
     {
         vertextSize = vertn * vertm;
         positions = new Vector4[vertextSize];
         velocities = new Vector4[vertextSize];
+        //distance between particles
         dx = 1.0f / (vertn - 1);
         dy = 1.0f / (vertm - 1);
+        //setup initial datas
         Vector4 p = new Vector4(0, 0, 0, 1);
         for (int i = 0; i < vertextSize; i++)
         {
             positions[i] = new Vector4(0, 0, 0, 0);
             velocities[i] = new Vector4(0, 0, 0, 0);
         }
-
-        GameObject gb = new GameObject();
         //translate matrix setup
         Matrix4x4 mp = new Matrix4x4();
         mp.SetTRS(new Vector3(-0.5f, 1.0f, 0.0f), Quaternion.Euler(new Vector3(-80.0f, 0.0f, 0.0f)), new Vector3(1.0f,1.0f,1.0f));
         mp.m13 = 0.0f;
-        
+        //setup initial vertex positions
         for (int i = 0; i < vertm; i++)
         {
             for (int j = 0; j < vertn; j++)
@@ -98,7 +90,8 @@ public class main : MonoBehaviour {
     void InitCompute()
     {
         //find kernel
-        computeShaderHandle = computeProgram.FindKernel("CSMain");
+        computeShaderHandleHang = computeProgram.FindKernel("HANG");
+        computeShaderHandleFreeDrop = computeProgram.FindKernel("FREEDROP");
         //create buffer
         computeBufferVelocity = new ComputeBuffer(vertextSize, 16);
         computeBufferPosition = new ComputeBuffer(vertextSize, 16);
@@ -106,8 +99,15 @@ public class main : MonoBehaviour {
         computeBufferPosition.SetData(positions);
         computeBufferVelocity.SetData(velocities);
         //compute shader set buffer
-        computeProgram.SetBuffer(computeShaderHandle, "Position", computeBufferPosition);
-        computeProgram.SetBuffer(computeShaderHandle, "Velocity", computeBufferVelocity);
+        if (mode == Mode.Hang) { 
+            computeProgram.SetBuffer(computeShaderHandleHang, "Position", computeBufferPosition);
+            computeProgram.SetBuffer(computeShaderHandleHang, "Velocity", computeBufferVelocity);
+        }
+        else
+        {
+            computeProgram.SetBuffer(computeShaderHandleFreeDrop, "Position", computeBufferPosition);
+            computeProgram.SetBuffer(computeShaderHandleFreeDrop, "Velocity", computeBufferVelocity);
+        }
         //compute shader set variable
         computeProgram.SetFloat("RestLengthHoriz", dx);
         computeProgram.SetFloat("RestLengthVert", dy);
@@ -126,14 +126,15 @@ public class main : MonoBehaviour {
 
     private void OnPostRender()
     {
+        //set Current Material 
         mat.SetPass(0);
-        switch (mt)
+        switch (meshTopology)
         {
             case MeshTopology.Points:
-                Graphics.DrawProcedural(mt, vertextSize, 1);
+                Graphics.DrawProcedural(meshTopology, vertextSize, 1);
                 break;
             case MeshTopology.Triangles:
-                Graphics.DrawProcedural(mt, vertextSize / 3, 1);
+                Graphics.DrawProcedural(meshTopology, vertextSize / 3, 1);
                 break;
             default:
                 Debug.Log("unhandled Mesh Topology\n");
@@ -143,15 +144,16 @@ public class main : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        //computeBufferPosition.GetData(positions);
-        //if (logFrame < 200) { 
-        //    sw.WriteLine(positions[0].x + ","+positions[0].y+","+positions[0].z);
-        //    logFrame++;
-        //}
-        for (int i = 0; i < 500; i++) {
-            computeProgram.Dispatch(computeShaderHandle, vertn / 8, vertm / 8, 1);
-        }
-
+        
+        if(mode == Mode.Hang)
+            for (int i = 0; i < 500; i++) {
+                computeProgram.Dispatch(computeShaderHandleHang, vertn / 8, vertm / 8, 1);
+            }
+        else
+            for (int i = 0; i < 500; i++)
+            {
+                computeProgram.Dispatch(computeShaderHandleFreeDrop, vertn / 8, vertm / 8, 1);
+            }
         frameNum++;
         fpsSum += 1.0f / (Time.deltaTime);
         if (frameNum > 200)
