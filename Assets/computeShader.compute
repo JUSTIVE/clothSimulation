@@ -11,6 +11,7 @@ float RestLengthVert;
 float RestLengthDiag;
 float4 sphere1;
 float4 sphere2;
+float4 sphere3;
 
 [numthreads(8,8,1)]
 void HANG (uint3 id : SV_DispatchThreadID)
@@ -164,8 +165,8 @@ void FREEDROP(uint3 id : SV_DispatchThreadID) {
 	Velocity[idx] = float4(v + a * DeltaT, 0.0);
 
 	if (Position[idx].y < -1) {
-		Position[idx].y = -1;
-		Velocity[idx] = Velocity[idx] * 0.05f;
+		Position[idx].y = -0.995;
+		Velocity[idx] = float4(0,0,0,0);
 	}
 	if (distance(Position[idx],float3(sphere1.xyz) )<0.25f) {
 		float3 f = Position[idx] - sphere1.xyz;
@@ -175,6 +176,11 @@ void FREEDROP(uint3 id : SV_DispatchThreadID) {
 		float3 f = Position[idx] - sphere2.xyz;
 		Velocity[idx] = normalize(normalize(float4(f,1.0f)) + Velocity[idx]);
 		
+	}
+	if (distance(Position[idx], float3(sphere3.xyz))<0.0625f) {
+		float3 f = Position[idx] - sphere3.xyz;
+		Velocity[idx] = normalize(normalize(float4(f, 1.0f)) + Velocity[idx])*3.0f;
+
 	}
 	
 }

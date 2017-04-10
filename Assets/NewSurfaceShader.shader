@@ -1,8 +1,13 @@
 ﻿Shader "Custom/NewSurfaceShader" {
+	Properties
+	{
+		_MainTex("Texture", 2D) = "white" {}
+	}
 	SubShader{
 		Pass{
 			Tags{ "LightMode" = "ForwardBase" }
 			CGPROGRAM
+			#pragma multi_compile_fwdbase
 			#pragma exclude_renderers d3d11_9x d3d11 xbox360
 			#pragma vertex vert
 			//#pragma geometry geom
@@ -17,6 +22,7 @@
 			struct v2f {
 				float4 pos : SV_POSITION;
 				float3 col : COLOR0;
+				float2 uv : TEXCOORD0;
 				LIGHTING_COORDS(0, 1)
 			};
 
@@ -25,7 +31,7 @@
 			//};
 			StructuredBuffer<float4>Position;
 			StructuredBuffer<float4>Velocity;
-		
+			uniform sampler2D _MainTex;
 
 			v2f vert(uint id : SV_VertexID) {
 				v2f o;
@@ -47,10 +53,9 @@
 					triStream.RestartStrip();
 				}
 			}*/
-
-			float4 frag(v2f i) : COLOR{
-				return float4(0,0,0,0);
-				return float4(i.col.xyz,1.0f);
+			
+			float4 frag(v2f i) : SV_Target{
+				return tex2D(_MainTex,i.uv);
 			}
 			ENDCG
 		}

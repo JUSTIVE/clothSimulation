@@ -16,14 +16,17 @@ public class main : MonoBehaviour {
     public Shader renderProgram;
     public int vertn, vertm;
     public Vector2 ClothSize;
+    public GameObject Satellite;
+
     //privates
+    private Mesh mesh;
+    private ComputeBuffer triangleBuffer;
     private ComputeBuffer computeBufferPosition;
     private ComputeBuffer computeBufferVelocity;
     private int computeShaderHandleHang;
     private int computeShaderHandleFreeDrop;
     private int normalComputeShaderHandle;
     private Material mat;
-
     private float dx, dy;
     private Vector4[] positions;
     private Vector4[] velocities;
@@ -57,12 +60,13 @@ public class main : MonoBehaviour {
     } 
     void InitVertex()
     {
+        
         vertextSize = vertn * vertm;
         positions = new Vector4[vertextSize];
         velocities = new Vector4[vertextSize];
         //distance between particles
-        dx = 1.0f / (vertn - 1);
-        dy = 1.0f / (vertm - 1);
+        dx = ClothSize.x / (vertn - 1);
+        dy = ClothSize.y / (vertm - 1);
         //setup initial datas
         Vector4 p = new Vector4(0, 0, 0, 1);
         for (int i = 0; i < vertextSize; i++)
@@ -72,7 +76,7 @@ public class main : MonoBehaviour {
         }
         //translate matrix setup
         Matrix4x4 mp = new Matrix4x4();
-        mp.SetTRS(new Vector3(-0.5f, 1.0f, 0.0f), Quaternion.Euler(new Vector3(-80.0f, 0.0f, 0.0f)), new Vector3(1.0f,1.0f,1.0f));
+        mp.SetTRS(new Vector3(-1.0f, 1.0f, 0.5f), Quaternion.Euler(new Vector3(-80.0f, 0.0f, 0.0f)), new Vector3(1.0f,1.0f,1.0f));
         mp.m13 = 0.0f;
         //setup initial vertex positions
         for (int i = 0; i < vertm; i++)
@@ -86,6 +90,19 @@ public class main : MonoBehaviour {
                 positions[i * vertm + j] = mp * positions[i * vertm + j];
             }
         }
+        //setupMesh
+        mesh = new Mesh();
+        mesh.vertices = new Vector3[vertextSize];
+        for(int i = 0; i < vertextSize; i++)
+        {
+            mesh.vertices[i] = new Vector3(positions[i].x, positions[i].y, positions[i].z);
+        }
+
+        //setup for triangle
+        triangleBuffer = new ComputeBuffer(vertextSize/3,12);
+        //triangleBuffer.SetData
+
+
     }
     void InitCompute()
     {
@@ -111,6 +128,7 @@ public class main : MonoBehaviour {
         //compute shader set variable
         computeProgram.SetVector("sphere1", new Vector4(0,-1.1f,-0.5f,1.0f));
         computeProgram.SetVector("sphere2", new Vector4(0,-0.329f,-0.5f,1.0f));
+        
         computeProgram.SetFloat("RestLengthHoriz", dx);
         computeProgram.SetFloat("RestLengthVert", dy);
         computeProgram.SetFloat("RestLengthDiag", Mathf.Sqrt(Mathf.Pow(dx, 2) + Mathf.Pow(dy, 2)));
@@ -126,7 +144,7 @@ public class main : MonoBehaviour {
         mat.SetBuffer("Velocity", computeBufferVelocity);
     }
 
-    private void OnPostRender()
+    private void OnRenderObject()
     {
         //set Current Material 
         mat.SetPass(0);
@@ -142,18 +160,21 @@ public class main : MonoBehaviour {
                 Debug.Log("unhandled Mesh Topology\n");
                 break;
         }
+        //Graphics.DrawMesh()
     }
 
     // Update is called once per frame
     void Update() {
-        
-        if(mode == Mode.Hang)
+        computeProgram.SetVector("sphere3", new Vector4(Satellite.transform.position.x, Satellite.transform.position.y, Satellite.transform.position.z, 1.0f));
+        if (mode == Mode.Hang)
             for (int i = 0; i < 500; i++) {
+
                 computeProgram.Dispatch(computeShaderHandleHang, vertn / 8, vertm / 8, 1);
             }
         else
             for (int i = 0; i < 500; i++)
             {
+                
                 computeProgram.Dispatch(computeShaderHandleFreeDrop, vertn / 8, vertm / 8, 1);
             }
         frameNum++;
@@ -168,12 +189,7 @@ public class main : MonoBehaviour {
                 frameStep++;
             }
         }
-        
-        //Debug.Log(positions[0].y);
-
     }
-    
-   
 }
 
 
