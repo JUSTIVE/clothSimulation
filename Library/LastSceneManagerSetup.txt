@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/clothinUnity.unity
+- path: "C:/Users/\uBBFC\uC0C1/Documents/balldrip/Assets/singledot.unity"
   isLoaded: 1
   isActive: 1
