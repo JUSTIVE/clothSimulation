@@ -17,12 +17,14 @@ public class main : MonoBehaviour {
     public int vertn, vertm;
     public Vector2 ClothSize;
     public GameObject Satellite;
+    
 
     //privates
     private Mesh mesh;
     private ComputeBuffer triangleBuffer;
     private ComputeBuffer computeBufferPosition;
     private ComputeBuffer computeBufferVelocity;
+    private ComputeBuffer computeBufferTexcoord;
     private int computeShaderHandleHang;
     private int computeShaderHandleFreeDrop;
     private int normalComputeShaderHandle;
@@ -30,6 +32,7 @@ public class main : MonoBehaviour {
     private float dx, dy;
     private Vector4[] positions;
     private Vector4[] velocities;
+    private Vector2[] texcoords;
     //values for write Logfile
     private StreamWriter streamWriter;
     private int logFrame = 0;
@@ -64,6 +67,7 @@ public class main : MonoBehaviour {
         vertextSize = vertn * vertm;
         positions = new Vector4[vertextSize];
         velocities = new Vector4[vertextSize];
+        texcoords = new Vector2[vertextSize];
         //distance between particles
         dx = ClothSize.x / (vertn - 1);
         dy = ClothSize.y / (vertm - 1);
@@ -73,6 +77,7 @@ public class main : MonoBehaviour {
         {
             positions[i] = new Vector4(0, 0, 0, 0);
             velocities[i] = new Vector4(0, 0, 0, 0);
+            texcoords[i] = new Vector2(0,0);
         }
         //translate matrix setup
         Matrix4x4 mp = new Matrix4x4();
@@ -87,7 +92,9 @@ public class main : MonoBehaviour {
                 positions[i * vertm + j].y = dy * i;
                 positions[i * vertm + j].z = 0.0f;
                 positions[i * vertm + j].w = 1.0f;
+                texcoords[i * vertm + j] = new Vector2(positions[i * vertm + j].x, positions[i * vertm + j].y);
                 positions[i * vertm + j] = mp * positions[i * vertm + j];
+                
             }
         }
         //setupMesh
@@ -97,7 +104,7 @@ public class main : MonoBehaviour {
         {
             mesh.vertices[i] = new Vector3(positions[i].x, positions[i].y, positions[i].z);
         }
-
+        
         //setup for triangle
         triangleBuffer = new ComputeBuffer(vertextSize/3,12);
         //triangleBuffer.SetData
@@ -112,18 +119,22 @@ public class main : MonoBehaviour {
         //create buffer
         computeBufferVelocity = new ComputeBuffer(vertextSize, 16);
         computeBufferPosition = new ComputeBuffer(vertextSize, 16);
+        computeBufferTexcoord = new ComputeBuffer(vertextSize, 8);
         //buffer set data
+        computeBufferTexcoord.SetData(texcoords);
         computeBufferPosition.SetData(positions);
         computeBufferVelocity.SetData(velocities);
         //compute shader set buffer
         if (mode == Mode.Hang) { 
             computeProgram.SetBuffer(computeShaderHandleHang, "Position", computeBufferPosition);
             computeProgram.SetBuffer(computeShaderHandleHang, "Velocity", computeBufferVelocity);
+            computeProgram.SetBuffer(computeShaderHandleFreeDrop, "TC", computeBufferTexcoord);
         }
         else
         {
             computeProgram.SetBuffer(computeShaderHandleFreeDrop, "Position", computeBufferPosition);
             computeProgram.SetBuffer(computeShaderHandleFreeDrop, "Velocity", computeBufferVelocity);
+            computeProgram.SetBuffer(computeShaderHandleFreeDrop, "TC", computeBufferTexcoord);
         }
         //compute shader set variable
         computeProgram.SetVector("sphere1", new Vector4(0,-1.1f,-0.5f,1.0f));
@@ -142,6 +153,7 @@ public class main : MonoBehaviour {
         //material set buffer
         mat.SetBuffer("Position", computeBufferPosition);
         mat.SetBuffer("Velocity", computeBufferVelocity);
+        mat.SetBuffer("TC", computeBufferTexcoord);
     }
 
     private void OnRenderObject()
@@ -156,6 +168,7 @@ public class main : MonoBehaviour {
             case MeshTopology.Triangles:
                 Graphics.DrawProcedural(meshTopology, vertextSize / 3, 1);
                 break;
+                
             default:
                 Debug.Log("unhandled Mesh Topology\n");
                 break;

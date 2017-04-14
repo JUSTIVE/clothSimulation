@@ -31,6 +31,7 @@
 			//};
 			StructuredBuffer<float4>Position;
 			StructuredBuffer<float4>Velocity;
+			StructuredBuffer<float2>TC;
 			uniform sampler2D _MainTex;
 
 			v2f vert(uint id : SV_VertexID) {
@@ -40,7 +41,8 @@
 				o.col.x = (sin((0.3*float(o.pos.x * 30))) * 127 + 128) / 255.0f;
 				o.col.y = (sin((0.3*float(o.pos.x * 30)) + 2) * 127 + 128) / 255.0f;
 				o.col.z = (sin((0.3*float(o.pos.x * 30)) + 4) * 127 + 128) / 255.0f;
-				TRANSFER_VERTEX_TO_FRAGMENT(o);
+				o.uv = TC[id];
+//				TRANSFER_VERTEX_TO_FRAGMENT(o);
 				return o;
 			}
 

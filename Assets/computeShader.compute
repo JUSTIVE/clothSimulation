@@ -103,7 +103,7 @@ void FREEDROP(uint3 id : SV_DispatchThreadID) {
 	float3 Gravity = float3(0, -10.0f, 0);
 	float ParticleMass = 0.05f;
 	float ParticleInvMass = 1.0f/ParticleMass;
-	float SpringK = 20000.0f;
+	float SpringK = 2000.0f;
 	float DeltaT = 0.000005f;
 	float DampingConst = 0.1f;
 
