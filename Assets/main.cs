@@ -99,7 +99,7 @@ public class main : MonoBehaviour {
                 
             }
         }
-        //setupMesh
+       
        
 
         //setup for triangle
@@ -127,8 +127,27 @@ public class main : MonoBehaviour {
             }
         }
         //backFace
-
-
+        for (int i = 0; i < (vertn - 1); i++)
+        {
+            for (int j = 0; j < (vertm - 1); j++)
+            {
+                triangles[this.triangleIndex] = i * vertn + j;
+                triangles[this.triangleIndex + 2] = i * vertn + (j + 1);
+                triangles[this.triangleIndex + 1] = (i + 1) * vertn + j;
+                
+                this.triangleIndex += 3;
+            }
+        }
+        for (int i = 0; i < (vertn - 1); i++)
+        {
+            for (int j = 0; j < (vertm - 1); j++)
+            {
+                triangles[this.triangleIndex] = i * vertn + j + 1;
+                triangles[this.triangleIndex + 2] = (i + 1) * vertn + j + 1;
+                triangles[this.triangleIndex + 1] = (i + 1) * vertn + j;
+                this.triangleIndex += 3;
+            }
+        }
         triangleBuffer = new ComputeBuffer((((vertn - 1) * (vertn - 1)) * 12), 4);
         triangleBuffer.SetData(triangles);
         //triangleBuffer.SetData
@@ -216,12 +235,12 @@ public class main : MonoBehaviour {
     void Update() {
         computeProgram.SetVector("sphere3", new Vector4(Satellite.transform.position.x, Satellite.transform.position.y, Satellite.transform.position.z, 1.0f));
         if (mode == Mode.Hang)
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 500; i++) {
 
                 computeProgram.Dispatch(computeShaderHandleHang, vertn / 8, vertm / 8, 1);
             }
         else
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 500; i++)
             {
                 
                 computeProgram.Dispatch(computeShaderHandleFreeDrop, vertn / 8, vertm / 8, 1);

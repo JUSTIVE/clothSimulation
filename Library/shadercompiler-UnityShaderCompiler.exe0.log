@@ -431,3 +431,168 @@ Cmd: compileSnippet
   api=15 type=0 insize=1366 outsize=1986 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
 Cmd: compileSnippet
   api=15 type=1 insize=1366 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(36): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(51): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(58): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(63): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(73): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(89): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(90): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(91): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(92): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(97): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(98): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(123): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(138): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(145): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(150): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(160): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(177): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(178): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(181): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(182): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(186): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(187): implicit truncation of vector type
+  api=15 insize=5657 outsize=25573 ok=1
+Cmd: preprocess
+  insize=1465 outsize=416 ok=1
+Cmd: compileSnippet
+  error: 2 plat 15 at (56): invalid subscript 'id'\nCompiling Vertex program with DIRECTIONAL
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA
+  api=15 type=0 insize=1425 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=0
+Cmd: compileSnippet
+  error: 2 plat 15 at (56): invalid subscript 'id'\nCompiling Vertex program with DIRECTIONAL
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA
+  api=15 type=0 insize=1425 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=0
+Cmd: compileSnippet
+  api=15 type=1 insize=1425 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: preprocess
+  insize=1474 outsize=416 ok=1
+Cmd: compileSnippet
+  error: 2 plat 15 at (43): invalid subscript 'id'\nCompiling Vertex program with DIRECTIONAL
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA
+  api=15 type=0 insize=1434 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=0
+Cmd: compileSnippet
+  error: 2 plat 15 at (43): invalid subscript 'id'\nCompiling Vertex program with DIRECTIONAL
+Platform defines: UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA
+  api=15 type=0 insize=1434 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=0
+Cmd: compileSnippet
+  api=15 type=1 insize=1434 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: preprocess
+  insize=1496 outsize=416 ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=1456 outsize=2253 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=1456 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: preprocess
+  insize=1497 outsize=416 ok=1
+Cmd: compileSnippet
+  api=15 type=0 insize=1457 outsize=2253 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: compileSnippet
+  api=15 type=1 insize=1457 outsize=0 kw=DIRECTIONAL pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_COLORSPACE_GAMMA ok=1
+Cmd: preprocess
+  insize=1497 outsize=416 ok=1
+Cmd: preprocess
+  insize=1497 outsize=416 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(36): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(51): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(58): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(63): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(73): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(89): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(90): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(91): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(92): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(97): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(98): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(123): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(138): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(145): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(150): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(160): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(177): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(178): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(181): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(182): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(186): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(187): implicit truncation of vector type
+  api=15 insize=5656 outsize=25549 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(36): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(51): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(58): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(63): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(73): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(89): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(90): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(91): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(92): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(97): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(98): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(123): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(138): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(145): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(150): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(160): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(177): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(178): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(181): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(182): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(186): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(187): implicit truncation of vector type
+  api=15 insize=5657 outsize=25573 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(36): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(51): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(58): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(63): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(73): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(89): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(90): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(91): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(92): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(97): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(98): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(123): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(138): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(145): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(150): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(160): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(177): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(178): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(181): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(182): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(186): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(187): implicit truncation of vector type
+  api=15 insize=5658 outsize=25577 ok=1
+Cmd: compileCompute
+  error: 1 plat 15 at computeShader.compute(36): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(51): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(58): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(63): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(73): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(87): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(89): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(90): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(91): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(92): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(97): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(98): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(123): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(138): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(145): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(150): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(160): signed/unsigned mismatch, unsigned assumed
+  error: 1 plat 15 at computeShader.compute(177): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(178): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(181): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(182): implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(186): 'distance': implicit truncation of vector type
+  error: 1 plat 15 at computeShader.compute(187): implicit truncation of vector type
+  api=15 insize=5658 outsize=25577 ok=1

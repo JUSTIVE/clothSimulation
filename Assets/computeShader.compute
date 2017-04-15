@@ -22,8 +22,8 @@ void HANG (uint3 id : SV_DispatchThreadID)
 	float3 Gravity = float3(0, -9.81f, 0);
 	float ParticleMass = 0.1f;
 	float ParticleInvMass = 10.0f;
-	float SpringK = 1000.0f;
-	float DeltaT = 0.00005f;
+	float SpringK = 2000.0f;
+	float DeltaT = 0.000005f;
 	float DampingConst = 0.2f;
 
 	uint idx = id.y * vertn + id.x;
@@ -94,7 +94,7 @@ void HANG (uint3 id : SV_DispatchThreadID)
 		Velocity[idx] = float4(0, 0, 0, 0);
 	}
 	
-	if (distance(Position[idx], float3(sphere3.xyz))<0.125f) {
+	if (distance(Position[idx], float3(sphere3.xyz))<0.130f) {
 		float3 f = Position[idx] - sphere3.xyz;
 		Velocity[idx] = normalize(normalize(float4(f, 1.0f)) + Velocity[idx])*3.0f;
 	}

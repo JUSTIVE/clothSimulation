@@ -4,7 +4,7 @@ Shader "Custom/NewSurfaceShader" {
 	Properties
 	{
 		_MainTex("Texture", 2D) = "white" {}
-		_BackTex("Texture", 2D) = "black" {}
+		_BackTex("Texture", 2D) = "white" {}
 	}
 	SubShader{
 		Pass{
@@ -25,6 +25,7 @@ Shader "Custom/NewSurfaceShader" {
 				float4 pos : SV_POSITION;
 				float3 col : COLOR0;
 				float2 uv : TEXCOORD0;
+				int id : VERTID;
 			};
 
 			StructuredBuffer<int>Trimap;
@@ -40,7 +41,7 @@ Shader "Custom/NewSurfaceShader" {
 				o.pos = UnityObjectToClipPos(worldPos);
 				o.uv = TC[Trimap[id]];
 				
-				
+				o.id= id;
 				/*float4 worldPos = Position[id];
 				o.pos = UnityObjectToClipPos(worldPos);
 				o.uv = TC[id];
@@ -53,7 +54,9 @@ Shader "Custom/NewSurfaceShader" {
 			
 			float4 frag(v2f i) : SV_Target{
 				//return float4(1,1,1,0);
-				return tex2D(_MainTex,i.uv);
+				if(i.id<(31*31)*6)
+					return tex2D(_MainTex,i.uv);
+				return tex2D(_BackTex,i.uv);	
 			}
 			ENDCG
 		}
