@@ -33,6 +33,8 @@ public class main : MonoBehaviour {
     private Vector4[] positions;
     private Vector4[] velocities;
     private Vector2[] texcoords;
+    private int[] triangles;
+    private int triangleIndex;
     //values for write Logfile
     private StreamWriter streamWriter;
     private int logFrame = 0;
@@ -98,15 +100,37 @@ public class main : MonoBehaviour {
             }
         }
         //setupMesh
-        mesh = new Mesh();
-        mesh.vertices = new Vector3[vertextSize];
-        for(int i = 0; i < vertextSize; i++)
-        {
-            mesh.vertices[i] = new Vector3(positions[i].x, positions[i].y, positions[i].z);
-        }
-        
+       
+
         //setup for triangle
-        triangleBuffer = new ComputeBuffer(vertextSize/3,12);
+        triangles = new int[(((vertn-1)*(vertm-1))*12)];
+        triangleIndex = 0;
+        //front face
+        for(int i=0;i< (vertn - 1); i++)
+        {
+            for(int j = 0; j < (vertm - 1); j++)
+            {
+                triangles[this.triangleIndex] = i*vertn+j;
+                triangles[this.triangleIndex+1] = (i+1)*vertn+j;
+                triangles[this.triangleIndex+2] = i * vertn + (j + 1);
+                this.triangleIndex+=3;
+            }   
+        }
+        for (int i = 0; i < (vertn - 1); i++)
+        {
+            for (int j = 0; j < (vertm - 1); j++)
+            {
+                triangles[this.triangleIndex] = i * vertn + j+1;
+                triangles[this.triangleIndex+1] = (i + 1) * vertn + j;
+                triangles[this.triangleIndex+2] = (i+1) * vertn + j + 1;
+                this.triangleIndex+=3;
+            }
+        }
+        //backFace
+
+
+        triangleBuffer = new ComputeBuffer((((vertn - 1) * (vertn - 1)) * 12), 4);
+        triangleBuffer.SetData(triangles);
         //triangleBuffer.SetData
 
 
@@ -154,6 +178,7 @@ public class main : MonoBehaviour {
         mat.SetBuffer("Position", computeBufferPosition);
         mat.SetBuffer("Velocity", computeBufferVelocity);
         mat.SetBuffer("TC", computeBufferTexcoord);
+        mat.SetBuffer("Trimap",triangleBuffer);
     }
 
     private void OnRenderObject()
@@ -166,7 +191,10 @@ public class main : MonoBehaviour {
                 Graphics.DrawProcedural(meshTopology, vertextSize, 1);
                 break;
             case MeshTopology.Triangles:
-                Graphics.DrawProcedural(meshTopology, vertextSize / 3, 1);
+                Graphics.DrawProcedural(meshTopology, ((vertn-1)* (vertn - 1)*12), 1);
+                break;
+            case MeshTopology.Quads:
+                Graphics.DrawProcedural(MeshTopology.Quads,vertextSize/4,1);
                 break;
                 
             default:
