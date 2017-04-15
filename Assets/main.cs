@@ -132,8 +132,8 @@ public class main : MonoBehaviour {
             for (int j = 0; j < (vertm - 1); j++)
             {
                 triangles[this.triangleIndex] = i * vertn + j;
-                triangles[this.triangleIndex + 2] = i * vertn + (j + 1);
-                triangles[this.triangleIndex + 1] = (i + 1) * vertn + j;
+                triangles[this.triangleIndex + 1] = i * vertn + (j + 1);
+                triangles[this.triangleIndex + 2] = (i + 1) * vertn + j;
                 
                 this.triangleIndex += 3;
             }
@@ -143,8 +143,8 @@ public class main : MonoBehaviour {
             for (int j = 0; j < (vertm - 1); j++)
             {
                 triangles[this.triangleIndex] = i * vertn + j + 1;
-                triangles[this.triangleIndex + 2] = (i + 1) * vertn + j + 1;
-                triangles[this.triangleIndex + 1] = (i + 1) * vertn + j;
+                triangles[this.triangleIndex + 1] = (i + 1) * vertn + j + 1;
+                triangles[this.triangleIndex + 2] = (i + 1) * vertn + j;
                 this.triangleIndex += 3;
             }
         }

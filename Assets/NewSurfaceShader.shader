@@ -40,13 +40,12 @@ Shader "Custom/NewSurfaceShader" {
 				float4 worldPos = Position[Trimap[id]];
 				o.pos = UnityObjectToClipPos(worldPos);
 				o.uv = TC[Trimap[id]];
-				
 				o.id= id;
 				/*float4 worldPos = Position[id];
 				o.pos = UnityObjectToClipPos(worldPos);
 				o.uv = TC[id];
 				*/
-//				TRANSFER_VERTEX_TO_FRAGMENT(o);
+				//TRANSFER_VERTEX_TO_FRAGMENT(o);
 				return o;
 			}
 
