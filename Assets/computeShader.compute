@@ -19,12 +19,12 @@ void HANG (uint3 id : SV_DispatchThreadID)
 	float3 nParticles = float3(vertn, vertm, 1);
 	float vertexes = vertn*vertm;
 
-	float3 Gravity = float3(0, -10.0f, 0);
+	float3 Gravity = float3(0, -9.81f, 0);
 	float ParticleMass = 0.1f;
 	float ParticleInvMass = 10.0f;
-	float SpringK = 2000.0f;
-	float DeltaT = 0.000005f;
-	float DampingConst = 0.1f;
+	float SpringK = 1000.0f;
+	float DeltaT = 0.00005f;
+	float DampingConst = 0.2f;
 
 	uint idx = id.y * vertn + id.x;
 	float3 p = float3(Position[idx].xyz);
@@ -32,7 +32,7 @@ void HANG (uint3 id : SV_DispatchThreadID)
 	float3 r;
 
 	float3 force = Gravity * ParticleMass;
-
+	
 	if (id.y < nParticles.y - 1) {
 		r = Position[idx + nParticles.x].xyz - p;
 		force += normalize(r) * SpringK * (length(r) - RestLengthVert);
@@ -93,6 +93,12 @@ void HANG (uint3 id : SV_DispatchThreadID)
 		Position[idx] = float4(p, 1.0);
 		Velocity[idx] = float4(0, 0, 0, 0);
 	}
+	
+	if (distance(Position[idx], float3(sphere3.xyz))<0.125f) {
+		float3 f = Position[idx] - sphere3.xyz;
+		Velocity[idx] = normalize(normalize(float4(f, 1.0f)) + Velocity[idx])*3.0f;
+	}
+	
 }
 
 [numthreads(8, 8, 1)]
@@ -103,7 +109,7 @@ void FREEDROP(uint3 id : SV_DispatchThreadID) {
 	float3 Gravity = float3(0, -10.0f, 0);
 	float ParticleMass = 0.05f;
 	float ParticleInvMass = 1.0f/ParticleMass;
-	float SpringK = 2000.0f;
+	float SpringK = 20000.0f;
 	float DeltaT = 0.000005f;
 	float DampingConst = 0.1f;
 

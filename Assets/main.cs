@@ -175,17 +175,25 @@ public class main : MonoBehaviour {
         }
         //Graphics.DrawMesh()
     }
+    private void OnDestroy()
+    {
+        computeBufferPosition.Release();
+        computeBufferTexcoord.Release();
+        computeBufferVelocity.Release();
+        
+
+    }
 
     // Update is called once per frame
     void Update() {
         computeProgram.SetVector("sphere3", new Vector4(Satellite.transform.position.x, Satellite.transform.position.y, Satellite.transform.position.z, 1.0f));
         if (mode == Mode.Hang)
-            for (int i = 0; i < 500; i++) {
+            for (int i = 0; i < 50; i++) {
 
                 computeProgram.Dispatch(computeShaderHandleHang, vertn / 8, vertm / 8, 1);
             }
         else
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 50; i++)
             {
                 
                 computeProgram.Dispatch(computeShaderHandleFreeDrop, vertn / 8, vertm / 8, 1);
